@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block head_title %}Index{% endblock head_title %}
+{% block custom_css %}
+{% endblock custom_css %}
+
+{% block content %}
+<div class="container">
+    <h1>My courses</h1>
+    <div class="module">
+        {% for course in object_list %}
+            <div class="course-info">
+                <h3>{{ course.course_name }}</h3>
+                <p><a href="{% url "core:course_detail" course.slug %}">Access contents</a></p>
+            </div>
+        {% empty %}
+            <p>
+                You are not enrolled in any courses yet.
+                <a href="{% url "core:courses" %}">Browse courses</a> to enroll in a course. 
+            </p>
+        {% endfor %}
+    </div>
+{% endblock content %}

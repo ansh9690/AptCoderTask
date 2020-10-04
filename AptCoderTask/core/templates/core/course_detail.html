@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block head_title %}Index{% endblock head_title %}
+{% block custom_css %}
+{% endblock custom_css %}
+
+{% block content %}
+<div class="container">
+<h1>Course Name </h1>
+{{ object.course_name}} <br>
+{{ object.instructer}} <br>
+{{ object.date}} <br>
+{{ object.description}} <br>
+{% if user.is_student %}
+    <form action="{% url "core:student_enroll_course" %}" method="post">
+        {{ enroll_form }}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Enroll now">
+    </form>
+{% elif not user.is_teacher %}
+<a href="#">login to enroll</a>
+{% endif %}
+</div>
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block head_title %}Index{% endblock head_title %}
+{% block custom_css %}
+{% endblock custom_css %}
+
+{% block content %}
+<div class="container">
+<h1>Course list</h1>
+    <ol>
+    {% if user.is_authenticated and user.is_teacher %}
+    <a href="{% url 'core:add_course' %}">Add course</a>
+        {% if courses %}
+            {% for courses in courses %}
+                <li>{{ courses.course_name}}</li>
+                <ul>
+                    {% for student in courses.students.all %}
+                    <li>{{ student }}</li>
+                    {% endfor%}
+                </ul>
+                <a href="{% url 'core:course_detail' courses.slug %}">Course Details</a>
+            {% endfor%}
+        {% else %}
+        <h3>Course not added yet.</h3>
+        {% endif %}
+    </ol>
+    {% else %}
+    <h3>Login as teacher to see this page</h3>
+    {% endif %}
+</div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block head_title %}Index{% endblock head_title %}
+{% block custom_css %}
+{% endblock custom_css %}
+
+{% block content %}
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-8 col-sm-10 col-12">
+      <h2>Add Course</h2>
+      <form method="post" action="{% url 'core:add_course' %}" novalidate>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success">Add Course</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

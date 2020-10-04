@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block head_title %}Index{% endblock head_title %}
+{% block custom_css %}
+{% endblock custom_css %}
+
+{% block content %}
+<div class="container">
+<h1>Course list</h1>
+    <ol>
+    {% if courses %}
+        {% for courses in courses %}
+            <li>{{ courses.course_name}}</li>
+            <a href="{% url 'core:course_detail' courses.slug %}">Course Details</a> <br>
+        {% endfor%}
+    {% else %}
+    <h3>No Course</h3>
+    {% endif %}
+    </ol>
+</div>
+{% endblock content %}

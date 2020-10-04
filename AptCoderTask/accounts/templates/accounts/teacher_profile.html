@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block head_title %}Index{% endblock head_title %}
+{% block custom_css %}
+{% endblock custom_css %}
+
+{% block content %}
+<div class="container mt-5">
+{% if user.is_authenticated and user.is_teacher %}
+    <h2>Profile {{ user.username }}</h2>
+    <h3>{{ user.first_name }}{{ user.last_name }}</h3>
+    <h3>{{ user.email }}</h3>
+    <h3>{{ user.teacher.phone_number }}</h3>
+{% endif %}
+</div>
+{% endblock content %}
