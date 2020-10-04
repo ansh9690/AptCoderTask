@@ -4,14 +4,15 @@
 {% endblock custom_css %}
 
 {% block content %}
-<div class="container">
+<div class="container mt-5">
 <h1>Course list</h1>
     <ol>
     {% if user.is_authenticated and user.is_teacher %}
-    <a href="{% url 'core:add_course' %}">Add course</a>
+    <a href="{% url 'core:add_course' %}" class="btn btn-outline-unique" rel="nofollow">Add course</a>
         {% if courses %}
             {% for courses in courses %}
                 <li>{{ courses.course_name}}</li>
+                <h6>Students who was enrolled this course</h6>
                 <ul>
                     {% for student in courses.students.all %}
                     <li>{{ student }}</li>

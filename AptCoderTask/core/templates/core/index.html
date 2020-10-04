@@ -4,16 +4,113 @@
 {% endblock custom_css %}
 
 {% block content %}
-<div class="container mt-4">
-  <p class="lead">
-    If you already have an account, go ahead and <a href="{% url 'accounts:login' %}">log in</a>. If you are new, get started
-    by creating a <a href="{% url 'accounts:student_signup' %}">student account</a> or a <a href="{% url 'accounts:teacher_signup' %}">teacher account</a>.
-  </p>
-  <hr>
-  {% if user.is_teacher %}
-  <a href="{% url 'core:course_list' %}">Course list</a>
-  {% else %}
-  <a href="{% url 'core:courses' %}">Courses</a>
-  {% endif %}
-</div>
+
+<main>
+    <!--Main layout-->
+    <div class="container">
+        <div class="row wow fadeIn" data-wow-delay="0.2s">
+            <div class="col-md-12">
+            {% if not user.is_authenticated %}
+                <div class="jumbotron">
+                    <h2 class="h2-responsive"></h2>
+                    <br>
+                    <p class="lead">
+                        If you already have an account, go ahead and <a href="{% url 'accounts:login' %}">log in</a>. If you are new, get started
+                        by creating a <a href="{% url 'accounts:student_signup' %}">student account</a> or a <a href="{% url 'accounts:teacher_signup' %}">teacher account</a>.
+                    </p>
+                    <hr>
+                    <a href="{% url 'accounts:student_signup' %}" class="btn btn-outline-unique" rel="nofollow">I'm a student</a>
+                    <a href="{% url 'accounts:teacher_signup' %}" class="btn btn-unique btn-ptc" rel="nofollow">I'm a teacher</a>
+                </div>
+                {% else %}
+                {% if user.is_teacher %}
+                    <a href="{% url 'core:course_list' %}">Course list</a>
+                {% endif %}
+                {% if user.is_student %}
+                    <a href="{% url 'core:student_enroll_courses' %}">Enroll Courses</a>
+                {% endif %}
+            {% endif %}
+            </div>
+        </div>
+        <!--/.First row-->
+
+        <hr class="extra-margins">
+
+        <!--Second row-->
+        <div class="row">
+            <!--First columnn-->
+            <div class="col-lg-4">
+                <!--Card-->
+                <div class="card wow fadeIn" data-wow-delay="0.2s">
+
+                    <!--Card image-->
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Architecture/4-col/img%20(3).jpg" alt="Card image cap">
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h4 class="card-title">This is title</h4>
+                        <!--Text-->
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-info">Read more</a>
+                    </div>
+
+                </div>
+                <!--/.Card-->
+            </div>
+            <!--First columnn-->
+
+            <!--Second columnn-->
+            <div class="col-lg-4">
+                <!--Card-->
+                <div class="card wow fadeIn" data-wow-delay="0.4s">
+
+                    <!--Card image-->
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Architecture/4-col/img%20(1).jpg" alt="Card image cap">
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h4 class="card-title">This is title</h4>
+                        <!--Text-->
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-info">Read more</a>
+                    </div>
+
+                </div>
+                <!--/.Card-->
+
+            </div>
+            <!--Second columnn-->
+
+            <!--Third columnn-->
+            <div class="col-lg-4">
+                <!--Card-->
+                <div class="card wow fadeIn" data-wow-delay="0.6s">
+
+                    <!--Card image-->
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Architecture/4-col/img%20(4).jpg" alt="Card image cap">
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h4 class="card-title">This is title</h4>
+                        <!--Text-->
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-info">Read more</a>
+                    </div>
+
+                </div>
+                <!--/.Card-->
+            </div>
+            <!--Third columnn-->
+        </div>
+        <!--/.Second row-->
+    </div>
+    <!--/.Main layout-->
+
+</main>
+
+
+
 {% endblock content %}

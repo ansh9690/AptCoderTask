@@ -4,17 +4,26 @@
 {% endblock custom_css %}
 
 {% block content %}
-<div class="container">
-<h1>Course list</h1>
-    <ol>
+<div class="container mt-4">
+    <h1>Course list</h1>
     {% if courses %}
-        {% for courses in courses %}
-            <li>{{ courses.course_name}}</li>
-            <a href="{% url 'core:course_detail' courses.slug %}">Course Details</a> <br>
-        {% endfor%}
+    <div class="row">
+    {% for courses in courses %}
+        <div class="col-lg-4">
+            <div class="card wow fadeIn" data-wow-delay="0.2s">
+                <div class="card-body">
+                    <h4 class="card-title">{{ courses.course_name}}</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="{% url 'core:course_detail' courses.slug %}" class="btn btn-info">Course Details</a>
+                </div>
+            </div>
+        </div>
+    {% endfor%}
+    </div>
     {% else %}
     <h3>No Course</h3>
     {% endif %}
-    </ol>
 </div>
+
+
 {% endblock content %}

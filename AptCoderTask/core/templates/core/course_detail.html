@@ -4,7 +4,7 @@
 {% endblock custom_css %}
 
 {% block content %}
-<div class="container">
+<div class="container mt-5">
 <h1>Course Name </h1>
 {{ object.course_name}} <br>
 {{ object.instructer}} <br>
@@ -17,7 +17,7 @@
         <input type="submit" class="btn btn-primary" value="Enroll now">
     </form>
 {% elif not user.is_teacher %}
-<a href="#">login to enroll</a>
+<a href="{% url 'accounts:login' %}">Login to Enroll</a>
 {% endif %}
 </div>
 {% endblock content %}

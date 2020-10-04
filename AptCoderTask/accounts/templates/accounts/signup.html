@@ -4,8 +4,18 @@
 {% endblock custom_css %}
 
 {% block content %}
-<h2>Sign up for a free account</h2>
-  <p class="lead">Select below the type of account you want to create</p>
-  <a href="{% url 'accounts:student_signup' %}" class="btn btn-student btn-lg" role="button">I'm a student</a>
-  <a href="{% url 'accounts:teacher_signup' %}" class="btn btn-teacher btn-lg" role="button">I'm a teacher</a>
+<div class="container mt-5">
+  <div class="row wow fadeIn" data-wow-delay="0.2s">
+      <div class="col-md-12">
+          <div class="jumbotron">
+              <h2 class="h2-responsive">Sign up for a free account</h2>
+              <br>
+              <p class="lead">Select below the type of account you want to create</p>
+              <hr>
+              <a href="{% url 'accounts:student_signup' %}" class="btn btn-outline-unique" rel="nofollow">I'm a student</a>
+              <a href="{% url 'accounts:teacher_signup' %}" class="btn btn-unique btn-ptc" rel="nofollow">I'm a teacher</a>
+          </div>
+      </div>
+  </div>
+</div>
 {% endblock content %}

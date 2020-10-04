@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout
+from django.contrib import messages
 from .forms import StudentSignUpForm, TeacherSignUpForm
 from .models import User
 
@@ -23,7 +24,12 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                messages.info(request, f"You are now logged in as {username}")
                 return redirect('/')
+            else:
+                messages.error(request, "Invalid username or password.")
+        else:
+            messages.error(request, "Invalid username or password.")
     form = AuthenticationForm()
     return render(request=request, template_name='accounts/login.html', context={"form": form})
 
