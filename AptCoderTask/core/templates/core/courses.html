@@ -9,7 +9,6 @@
     {% if object_list %}
     <div class="row">
     {% for courses in object_list %}
-        {% if not courses.students.all %}
         <div class="col-lg-4">
             <div class="card wow fadeIn" data-wow-delay="0.2s">
                 <div class="card-body">
@@ -19,7 +18,6 @@
                 </div>
             </div>
         </div>
-        {% endif %}
     {% endfor%}
     </div>
     {% else %}

@@ -32,6 +32,11 @@ class CourseDetailView(DetailView):
         return context
 
 
+class EnrolledCourseDetailView(DetailView):
+    model = Courses
+    template_name = 'core/enrolled_course_detail.html'
+
+
 @login_required(login_url='accounts:login')
 def course_list(request):
     courses = Courses.objects.prefetch_related('students')
@@ -63,7 +68,7 @@ class StudentEnrollCourseView(LoginRequiredMixin, FormView):
                      self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('core:course_detail',
+        return reverse_lazy('core:enrolled_course_detail',
                             args=[self.course.slug])
 
 

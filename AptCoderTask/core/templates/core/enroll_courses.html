@@ -10,7 +10,7 @@
         {% for course in object_list %}
             <div class="course-info">
                 <h3>{{ course.course_name }}</h3>
-                <p><a href="{% url "core:course_detail" course.slug %}">Access contents</a></p>
+                <p><a href="{% url "core:enrolled_course_detail" course.slug %}">Access contents</a></p>
             </div>
         {% empty %}
             <p>

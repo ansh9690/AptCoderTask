@@ -37,7 +37,6 @@
         {% if object_list %}
         <div class="row">
         {% for courses in object_list %}
-            {% if not courses.students.all and not user.is_teacher%}
             <div class="col-lg-4">
                 <div class="card wow fadeIn" data-wow-delay="0.2s">
                     <div class="card-body">
@@ -47,19 +46,6 @@
                     </div>
                 </div>
             </div>
-            {% else %}
-                {% if user.is_teacher%}
-                    <div class="col-lg-4">
-                        <div class="card wow fadeIn" data-wow-delay="0.2s">
-                            <div class="card-body">
-                                <h4 class="card-title">{{ courses.course_name}}</h4>
-                                <p class="card-text">{{ courses.description|truncatechars:100 }}</p>
-                                <a href="{% url 'core:course_detail' courses.slug %}" class="btn btn-info">Course Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-            {% endif %}
         {% endfor%}
         </div>
         {% else %}

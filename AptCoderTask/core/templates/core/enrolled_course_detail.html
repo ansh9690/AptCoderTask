@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block head_title %}Enrolled Course Details{% endblock head_title %}
+{% block custom_css %}
+{% endblock custom_css %}
+
+{% block content %}
+<div class="container mt-5">
+<h1>Course Name </h1>
+{{ object.course_name}} <br>
+<a href="{% url 'core:teacher_detail' object.slug %}">{{ object.instructer}}</a> <br>
+{{ object.date}} <br>
+{{ object.description}} <br>
+</div>
+{% endblock content %}
