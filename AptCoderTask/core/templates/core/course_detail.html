@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block head_title %}Index{% endblock head_title %}
+{% block head_title %}Course Details{% endblock head_title %}
 {% block custom_css %}
 {% endblock custom_css %}
 
@@ -8,13 +8,13 @@
 {% if object.students.all %}
 <h1>Course Name </h1>
 {{ object.course_name}} <br>
-<a href="#">{{ object.instructer}}</a> <br>
+<a href="{% url 'core:teacher_detail' object.slug %}">{{ object.instructer}}</a> <br>
 {{ object.date}} <br>
 {{ object.description}} <br>
 {% else %}
     <h1>Course Name </h1>
     {{ object.course_name}} <br>
-    <a href="#">{{ object.instructer}}</a> <br>
+    <a href="{% url 'core:teacher_detail' object.slug %}">{{ object.instructer}}</a> <br>
     {{ object.date}} <br>
     {{ object.description}} <br>
     {% if user.is_student %}

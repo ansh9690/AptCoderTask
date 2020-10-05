@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block head_title %}Index{% endblock head_title %}
+{% block head_title %}Course List{% endblock head_title %}
 {% block custom_css %}
 {% endblock custom_css %}
 
@@ -11,14 +11,16 @@
     <a href="{% url 'core:add_course' %}" class="btn btn-outline-unique" rel="nofollow">Add course</a>
         {% if courses %}
             {% for courses in courses %}
-                <li>{{ courses.course_name}}</li>
-                <h6>Students who was enrolled this course</h6>
+                <h3><li>{{ courses.course_name}}</li></h3>
+                {% if courses.students.all %}
+                <p>Students who was enrolled in this course</p>
                 <ul>
                     {% for student in courses.students.all %}
-                    <li>{{ student }}</li>
+                    <a href="{% url 'core:student_detail' courses.slug %}">{{ student|title }}</a>
                     {% endfor%}
                 </ul>
-                <a href="{% url 'core:course_detail' courses.slug %}">Course Details</a>
+                {% endif %}
+                <a href="{% url 'core:course_detail' courses.slug %}" class="btn btn-sm" rel="nofollow">Course Details</a>
             {% endfor%}
         {% else %}
         <h3>Course not added yet.</h3>

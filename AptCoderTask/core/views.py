@@ -74,3 +74,13 @@ class StudentCourseListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         qs = super(StudentCourseListView, self).get_queryset()
         return qs.filter(students__in=[self.request.user])
+
+
+class StudentDetailView(DetailView):
+    model = Courses
+    template_name = 'core/student_detail.html'
+
+
+class TeacherDetailView(DetailView):
+    model = Courses
+    template_name = 'core/teacher_detail.html'

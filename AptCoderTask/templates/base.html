@@ -53,6 +53,9 @@
           <ul class="navbar-nav ml-auto">
               <li class="nav-item">
               {% if user.is_teacher %}
+              <a class="nav-link" href="{% url 'core:course_list' %}">DASHBOARD</a>
+              </li>
+              <li class="nav-item">
               <a class="nav-link" href="{% url 'accounts:teacher_profile' %}">{{ user.username|title}}</a>
               {% else %}
               {% if user.is_student %}
