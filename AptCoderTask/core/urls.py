@@ -1,14 +1,14 @@
 from django.urls import path
-from core.views import index, course_list, CourseDetailView, add_course, courses, StudentEnrollCourseView, StudentCourseListView
+from core.views import HomeView, course_list, CourseDetailView, add_course, CourseListView, StudentEnrollCourseView, StudentCourseListView
 
 app_name = 'core'
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('', HomeView.as_view(), name='index'),
     path('add/course/', add_course, name='add_course'),
-    path('detail/<slug:slug>/', CourseDetailView.as_view(), name='course_detail'),
+    path('<slug:slug>/details/', CourseDetailView.as_view(), name='course_detail'),
     path('list/', course_list, name='course_list'),
-    path('courses/list/', courses, name='courses'),
+    path('courses/list/', CourseListView.as_view(), name='courses'),
     path('enroll-course/', StudentEnrollCourseView.as_view(),
          name='student_enroll_course'),
     path('enroll/courses/', StudentCourseListView.as_view(),

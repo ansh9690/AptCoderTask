@@ -6,19 +6,18 @@ from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
-from accounts.decorators import teacher_required
-from accounts.decorators import student_required
 from core.models import Courses
 from core.forms import CourseForm, CourseEnrollForm
 
 
-def index(request):
-    return render(request, 'core/index.html')
+class HomeView(ListView):
+    model = Courses
+    template_name = 'core/index.html'
 
 
-def courses(request):
-    courses = Courses.objects.all()
-    return render(request, 'core/courses.html', {'courses': courses})
+class CourseListView(ListView):
+    model = Courses
+    template_name = 'core/courses.html'
 
 
 class CourseDetailView(DetailView):

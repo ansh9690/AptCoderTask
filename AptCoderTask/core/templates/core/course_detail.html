@@ -5,19 +5,27 @@
 
 {% block content %}
 <div class="container mt-5">
+{% if object.students.all %}
 <h1>Course Name </h1>
 {{ object.course_name}} <br>
-{{ object.instructer}} <br>
+<a href="#">{{ object.instructer}}</a> <br>
 {{ object.date}} <br>
 {{ object.description}} <br>
-{% if user.is_student %}
-    <form action="{% url "core:student_enroll_course" %}" method="post">
-        {{ enroll_form }}
-        {% csrf_token %}
-        <input type="submit" class="btn btn-primary" value="Enroll now">
-    </form>
-{% elif not user.is_teacher %}
-<a href="{% url 'accounts:login' %}">Login to Enroll</a>
+{% else %}
+    <h1>Course Name </h1>
+    {{ object.course_name}} <br>
+    <a href="#">{{ object.instructer}}</a> <br>
+    {{ object.date}} <br>
+    {{ object.description}} <br>
+    {% if user.is_student %}
+        <form action="{% url "core:student_enroll_course" %}" method="post">
+            {{ enroll_form }}
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Enroll now">
+        </form>
+    {% elif not user.is_teacher %}
+    <a href="{% url 'accounts:login' %}">Login to Enroll</a>
+    {% endif %}
 {% endif %}
 </div>
 {% endblock content %}

@@ -6,18 +6,20 @@
 {% block content %}
 <div class="container mt-4">
     <h1>Course list</h1>
-    {% if courses %}
+    {% if object_list %}
     <div class="row">
-    {% for courses in courses %}
+    {% for courses in object_list %}
+        {% if not courses.students.all %}
         <div class="col-lg-4">
             <div class="card wow fadeIn" data-wow-delay="0.2s">
                 <div class="card-body">
                     <h4 class="card-title">{{ courses.course_name}}</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">{{ courses.description|truncatechars:100 }}</p>
                     <a href="{% url 'core:course_detail' courses.slug %}" class="btn btn-info">Course Details</a>
                 </div>
             </div>
         </div>
+        {% endif %}
     {% endfor%}
     </div>
     {% else %}

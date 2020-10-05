@@ -8,7 +8,7 @@ class Courses(models.Model):
                               related_name='courses_created',
                               on_delete=models.CASCADE)
     course_name = models.CharField(max_length=250)
-    description = models.CharField(max_length=1000, blank=True, null=True)
+    description = models.TextField()
     date = models.DateField(auto_now_add=True)
     instructer = models.CharField(max_length=150, blank=True, null=True)
     students = models.ManyToManyField(User, related_name='courses_joined',
